@@ -1,4 +1,5 @@
 __pycache__
 venv/*
 exchanges.egg-info/*
-exports/*
+exports/data.csv
+exports/release.csv
