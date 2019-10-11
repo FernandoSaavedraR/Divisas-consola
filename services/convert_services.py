@@ -1,7 +1,7 @@
 import csv
 import os
-from classes.exchange import Exchange
 import click
+from classes.exchange import Exchange
 class convert_service:
     def __init__(self,table_name):
         self.table_name = table_name
