@@ -37,10 +37,34 @@ def bta(ctx,exchange,quantity,release):
         click.echo('-'*73)
 
 @convert.command()
+@click.option('-e','--exchange',type=str,prompt=True,help='currency acronym',default="mxn")
+@click.option('-c','--conversion',type=str,prompt=True,help='currency acronym',default="mxn")
+@click.option('-q','--quantity',type=float,prompt=True,help='quantity to convert',default=1)
 @click.pass_context
-def bto(ctx):
+def bto(ctx,exchange,conversion,quantity):
     """convert in one currency"""
-    pass
+    exc_service = Exchange_services(ctx.obj['exchange_table'])
+    con_service = convert_service(ctx.obj['exchange_table'])
+    listE = exc_service.list_exchanges()
+    exchanges = con_service.one_to_one(listE,exchange,conversion,quantity)
+    if exchanges:
+        click.echo('-'*93)
+        click.echo('| {baseP} | {conversionP} | {quantityP} | {conversionD} |'.format(
+            baseP = "exchange".center(20,' ').upper(),
+            conversionP = "conversion".center(20, ' ').upper(),
+            quantityP= "quantity".center(20, ' ').upper(),
+            conversionD = "value".center(20,' ').upper(),
+        ))
+        click.echo('-'*93)
+        click.echo('| {baseP} | {conversionP} | {quantityP} | {conversionD} |'.format(
+            baseP = exchange.center(20,' '),
+            conversionP = conversion.center(20, ' '),
+            quantityP= str(quantity).center(20, ' '),
+            conversionD = str(exchanges["value"]).center(20,' '),
+        ))
+        click.echo('-'*93)
+    else:
+        click.echo('empty data')
 
 
 @convert.command()

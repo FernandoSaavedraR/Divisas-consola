@@ -32,3 +32,11 @@ class convert_service:
         if(release.capitalize() =="Yes"):
             self.export(new_list)
         return new_list
+
+    def one_to_one(self,listE,baseC,nextC,quantity):
+        temp_list = self.one_to_all(listE,baseC,quantity,"No")
+        conversion = [x for x in temp_list if nextC == x["exchange"]]
+        if(len(conversion)>0):
+            return conversion[0]
+        else:
+            return False
