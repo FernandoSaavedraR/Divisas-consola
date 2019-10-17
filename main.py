@@ -1,7 +1,8 @@
 import click
-from commands import exchange_commands as exchanges_commands
-from commands import convert_commands as convert_commands
-EXCHANGE_TABLE = 'data/.divisas.csv'
+import os
+from commands.convert_commands import all as com_all
+from commands.exchange_commands import all as exc_all
+EXCHANGE_TABLE = 'data\.divisas.csv'
 @click.group()
 @click.pass_context
 def ini(ctx):
@@ -11,5 +12,5 @@ def ini(ctx):
     ctx.obj = {}
     ctx.obj['exchange_table']=EXCHANGE_TABLE
 
-ini.add_command(exchanges_commands.all)
-ini.add_command(convert_commands.all)
+ini.add_command(com_all)
+ini.add_command(exc_all)
