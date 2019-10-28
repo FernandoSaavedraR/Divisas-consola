@@ -14,3 +14,4 @@ def ini(ctx):
 
 ini.add_command(com_all)
 ini.add_command(exc_all)
+#comentario de prueba linux
