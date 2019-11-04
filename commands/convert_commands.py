@@ -12,7 +12,7 @@ def convert():
 @click.option('-q','--quantity',type=float,prompt=True,help='quantity to convert',default=1)
 @click.option('-r','--release',type=str,prompt=True,help='Export to a csv file',default="No")
 @click.pass_context
-def bta(ctx,exchange,quantity,release):
+def ota(ctx,exchange,quantity,release):
     """show the value of a currency in all the values saved"""
     exc_service = Exchange_services(ctx.obj['exchange_table'])
     con_service = convert_service(ctx.obj['exchange_table'])
@@ -41,7 +41,7 @@ def bta(ctx,exchange,quantity,release):
 @click.option('-c','--conversion',type=str,prompt=True,help='currency acronym',default="mxn")
 @click.option('-q','--quantity',type=float,prompt=True,help='quantity to convert',default=1)
 @click.pass_context
-def bto(ctx,exchange,conversion,quantity):
+def oto(ctx,exchange,conversion,quantity):
     """convert in one currency"""
     exc_service = Exchange_services(ctx.obj['exchange_table'])
     con_service = convert_service(ctx.obj['exchange_table'])
@@ -67,15 +67,15 @@ def bto(ctx,exchange,conversion,quantity):
         click.echo('empty data')
 
 
-@convert.command()
-@click.pass_context
+#@convert.command()
+#@click.pass_context
 def fta(ctx):
     """load the data from an external file and convert to all currencies"""
     pass
 
 
-@convert.command()
-@click.pass_context
+#@convert.command()
+#@click.pass_context
 def fto(ctx):
     """load the data from an external file and convert to a currency"""
     pass
