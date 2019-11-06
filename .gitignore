@@ -3,3 +3,4 @@ venv/*
 exchanges.egg-info/*
 exports/data.csv
 exports/release.csv
+data/*
